@@ -1,0 +1,38 @@
+Creating a next.js project OLX Clone which name is TRADE HUB
+
+1. Project Setup
+   initialize next js project and Dependisies
+
+2. Database Setup
+   Mongo DB Config and Create Modals
+
+3. Authentication & Authorization
+   User Registration & Login & Forget: Implement user authentication by JWT(Json Web Token)
+   Role Management: Set up different roles (seller, buyer)
+
+4. Product Listings
+   Create Product Form: Develop form form user to list product.field include like(Category,Image,Price Range etc)
+   Image Upload: Implement image upload functionality using a service like Cloudinary .
+   Display Listings: Create pages to display products, categorized by different parameters (e.g., category, price range).
+
+5. Filtering
+   Filtering Options: Add filters for price range, categories, and locations to help users narrow down search results.
+
+6. Product Details Page
+   Product Information: Show detailed information about the product, including images, description, and seller contact details.
+   Contact Seller: Implement a messaging system or a simple contact form for buyers to reach out to sellers.
+
+7. User Dashboard
+   My Listings: Create a dashboard for users to manage their listed items, edit or delete them, and see their sales history.
+   Favorite Listings: Allow users to bookmark or favorite items for future reference.
+
+8. Responsive Design
+   Mobile-Friendly Layout: Ensure the application is responsive and works well on both desktop and mobile devices.
+
+9. Deployment
+   Vercel: Deploy the Next.js application using Vercel.
+   Environment Variables: Set up environment variables for production, including API keys and database URIs.
+
+10. Testing & Optimization
+    Unit & Integration Tests: Write tests for critical components React Testing Library.
+    Performance Optimization: Optimize the app for performance, focusing on loading times, SEO, and accessibility.
