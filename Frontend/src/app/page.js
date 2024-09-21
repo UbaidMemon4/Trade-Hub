@@ -2,9 +2,9 @@
 import { useEffect } from "react";
 import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
-import { Logout } from "./Redux/tradeSlice";
-import Home from "./Auth/Home/page";
+import { Login } from "./Redux/tradeSlice";
 import "./globals.css";
+import Home from "./Auth/Home/page";
 
 export default function Main() {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ export default function Main() {
     document.title = "Home Page || Trade Hub";
     const token = Cookies.get("JWT");
     if (token) {
-      dispatch(Logout());
+      dispatch(Login());
     }
   }, [dispatch]);
 

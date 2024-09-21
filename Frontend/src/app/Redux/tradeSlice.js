@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {};
+const initialState = { isLogin: false };
 const tradeSlice = createSlice({
   name: "trade",
-  initialState: { isLogin: true },
+  initialState,
   reducers: {
     Login(state) {
       state.isLogin = true;
@@ -13,3 +13,5 @@ const tradeSlice = createSlice({
     },
   },
 });
+export const { Login, Logout } = tradeSlice.actions;
+export default tradeSlice.reducer;
