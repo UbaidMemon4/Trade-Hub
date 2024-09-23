@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const Connectdb = require("./config/db");
 
 //router import
+const authRoute = require("./Route/authRoute");
 
 //env config
 dotenv.config();
@@ -11,7 +12,7 @@ dotenv.config();
 //mongodb comnnection
 Connectdb();
 
-//rest object 
+//rest object
 const app = express();
 
 //middle wares
@@ -19,7 +20,7 @@ app.use(cors());
 app.use(express.json());
 
 //routes
-// app.use("/user", userRoutes);
+app.use("/auth", authRoute);
 // app.use("/blog", blogRoutes);
 
 //Port

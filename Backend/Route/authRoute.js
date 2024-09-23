@@ -20,3 +20,5 @@ router.post("/login", loginUsers);
 
 //Forget Password || Post
 router.post("/forget-password", forgetPassword);
+
+module.exports = router;

@@ -18,12 +18,6 @@ const transporter = nodemailer.createTransport({
 exports.registerController = async (req, res) => {
   try {
     const { email } = req.body;
-    if (existingUser) {
-      return res.status(401).send({
-        success: false,
-        message: "User Aleady Exisits",
-      });
-    }
 
     //Existing User
     const existingUser = await AuthModal.findOne({ email });
@@ -107,13 +101,15 @@ exports.loginUsers = async (req, res) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
-      return res.status(401).send({
+      return res.status(400).send({
         success: false,
-        message: "Please provide email or password",
+        message: "Email and password are required",
       });
     }
+
     //Find User
     const user = await AuthModal.findOne({ email });
+
     if (!user) {
       return res.status(200).send({
         success: false,
@@ -121,7 +117,7 @@ exports.loginUsers = async (req, res) => {
       });
     }
     //Password Check
-    const isMatch = await bcrypt.compare(password, user.passward);
+    const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(401).send({
         success: false,
@@ -137,7 +133,7 @@ exports.loginUsers = async (req, res) => {
       process.env.SECRET_KEY
     );
     if (token) {
-      await UserModal.findOneAndUpdate(
+      await AuthModal.findOneAndUpdate(
         { email: email }, // Query
         { token: token }, // Update
         { new: true }
