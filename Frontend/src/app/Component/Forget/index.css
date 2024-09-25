@@ -1,8 +1,8 @@
-.login-main {
+.forget-main {
   display: flex;
 }
 
-.login-side {
+.forget-side {
   background-image: url("https://images.unsplash.com/photo-1638132035918-90a22beaab3b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8fA%3D%3D");
   background-size: cover;
   background-repeat: no-repeat;
@@ -14,16 +14,16 @@
   height: 90vh;
   border-radius: 50px 10px;
 }
-.login-form > div > h1 {
+.forget-form > div > h1 {
   margin: 10px 0;
   color: black;
 }
-.login-introduce {
+.forget-introduce {
   margin: auto 100px auto 20px;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
-.login-introduce > h1 {
+.forget-introduce > h1 {
   color: mediumblue;
   font-size: 40px;
 }

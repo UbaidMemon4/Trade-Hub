@@ -209,7 +209,7 @@ exports.newPassword = async (req, res) => {
       });
     }
     //Find User
-    const user = await UserModal.findOne({ email });
+    const user = await AuthModal.findOne({ email });
     if (!user) {
       return res.status(200).send({
         success: false,

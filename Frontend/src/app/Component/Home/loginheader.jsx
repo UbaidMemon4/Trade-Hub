@@ -43,6 +43,25 @@ const Loginheader = () => {
         </Link>
       )}
       <div style={{ display: "flex", gap: "20px" }}>
+        <Link href="/Auth/ForgetPassword">
+          {pathname === "/Auth/ForgetPassword" ? null : (
+            <Button
+              style={{
+                width: 140,
+                height: 40,
+                color: "#000",
+                background: "#fff",
+                border: "5px solid",
+                borderImage:
+                  "linear-gradient(to right, #ffce32, #23e5db, #3a77ff) 1",
+              }}
+            >
+              <UserAddOutlined />
+              Forget Password
+            </Button>
+          )}
+        </Link>
+
         <Link href="/Auth/Login">
           {pathname === "/Auth/Login" ? null : (
             <Button

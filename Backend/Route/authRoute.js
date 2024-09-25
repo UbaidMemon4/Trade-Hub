@@ -4,6 +4,8 @@ const {
   registerController,
   registerControllerOtp,
   forgetPassword,
+  newPassword,
+  updateUserContoller,
 } = require("../Controller/authController");
 
 // router object
@@ -20,5 +22,11 @@ router.post("/login", loginUsers);
 
 //Forget Password || Post
 router.post("/forget-password", forgetPassword);
+
+//New Password || Post
+router.post("/new-password", newPassword);
+
+//Update Profile || Post
+router.post("/update-profile", updateUserContoller);
 
 module.exports = router;
