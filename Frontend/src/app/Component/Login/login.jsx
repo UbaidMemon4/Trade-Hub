@@ -1,5 +1,4 @@
 "use client";
-import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import "./index.css";
 import { Button, Form, Input } from "antd";
@@ -13,16 +12,6 @@ const introduce =
 const LoginComponent = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    document.title = `Login Your Account || Trade Hub`;
-    // const user = useSelector((state) => state.trade.Login);
-    const user = false;
-
-    if (user) {
-      router.push("/Auth/UserView");
-    }
-  }, [router]);
 
   const [form] = Form.useForm();
 

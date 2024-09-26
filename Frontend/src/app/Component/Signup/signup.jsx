@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import "./index.css";
 import { Button, Flex, Form, Input, Modal, Typography } from "antd";
@@ -13,14 +13,6 @@ const SignupComponent = () => {
   const router = useRouter();
   const { Title } = Typography;
 
-  useEffect(() => {
-    document.title = `Sign Up Or Create A New Account || Trade Hub`;
-    // const user = useSelector((state) => state.trade.Login);
-    const user = false;
-    if (user) {
-      router.push("/Auth/UserView");
-    }
-  }, [router]);
   const [user, setUser] = useState({
     firstname: "",
     email: "",

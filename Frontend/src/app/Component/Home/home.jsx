@@ -2,7 +2,6 @@
 import React from "react";
 import Image from "next/image";
 import logoTH from "../../../../public/Black & White Minimalist Busines.png";
-import Link from "next/link";
 const HomeComponent = () => {
   return (
     <main style={{ height: "100%" }}>
@@ -25,24 +24,6 @@ const HomeComponent = () => {
             }}
           >
             <Image src={logoTH} alt="Trade Hub Logo" width={555} height={225} />
-            {/* <p
-              style={{
-                color: "blue",
-                fontFamily: "sans-serif",
-                fontWeight: "bold",
-
-                margin: "0 auto 2px 4px",
-              }}
-            >
-              <span style={{ color: "red" }}>Welcome To TRADE HUB || </span>
-              <Link href="/Auth/Login">
-                <span>Click ME! To Login</span>
-              </Link>
-              <span style={{ color: "red" }}> OR </span>
-              <Link href="/Auth/Signup">
-                <span>New here? Sign Up</span>
-              </Link>
-            </p> */}
           </div>
         </div>
       </div>

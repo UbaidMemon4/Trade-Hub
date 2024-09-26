@@ -22,6 +22,12 @@ const AuthSchema = new mongoose.Schema(
       type: String,
       require: [true, "token is requried"],
     },
+    post: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "Post",
+      },
+    ],
   },
   { timestamps: true }
 );

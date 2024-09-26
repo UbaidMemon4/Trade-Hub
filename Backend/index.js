@@ -5,6 +5,7 @@ const Connectdb = require("./config/db");
 
 //router import
 const authRoute = require("./Route/authRoute");
+const postRoute = require("./Route/postRoute");
 
 //env config
 dotenv.config();
@@ -21,7 +22,7 @@ app.use(express.json());
 
 //routes
 app.use("/auth", authRoute);
-// app.use("/blog", blogRoutes);
+app.use("/post", postRoute);
 
 //Port
 const port = process.env.PORT;

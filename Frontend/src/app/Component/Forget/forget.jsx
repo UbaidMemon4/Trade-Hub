@@ -1,11 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import "./index.css";
 import { Button, Form, Input } from "antd";
 import axios from "axios";
 import toast from "react-hot-toast";
-import Loginheader from "../Home/loginheader";
 
 const introduce =
   "A trade hub is a central location where goods and services are exchanged between different regions, often serving as a key point in global supply chains. These hubs facilitate trade by offering infrastructure, logistics, and financial services to streamline the flow of goods, making them vital to international commerce.";
@@ -13,14 +12,6 @@ const introduce =
 const ForgetComponent = () => {
   const router = useRouter();
   const [userEmail, setUserEmail] = useState("");
-
-  useEffect(() => {
-    document.title = `Login Your Account || Trade Hub`;
-    const user = false; // Simulated condition, replace with actual logic if needed
-    if (user) {
-      router.push("/Auth/UserView");
-    }
-  }, [router]);
 
   const [form] = Form.useForm();
 
