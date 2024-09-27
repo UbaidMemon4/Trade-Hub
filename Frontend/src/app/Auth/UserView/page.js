@@ -4,8 +4,9 @@ import React from "react";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
+import LogoutHeader from "../../Component/LogoutHeader/logoutHeader";
 
-const page = () => {
+const UserView = () => {
   const router = useRouter();
 
   useEffect(() => {
@@ -20,11 +21,13 @@ const page = () => {
   return (
     <div className="mainUserView">
       <div>
-        <logoutHeader />
+        <LogoutHeader />
       </div>
-      <div></div>
+      <div>
+        <h1>It is Body Part</h1>
+      </div>
     </div>
   );
 };
 
-export default page;
+export default UserView;

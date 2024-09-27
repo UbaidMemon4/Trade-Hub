@@ -1,0 +1,22 @@
+.tradePhoto {
+  width: 140px;
+  height: 45px;
+  border: 5px solid;
+  border-image: linear-gradient(to right, #ffce32, #23e5db, #3a77ff) 1;
+  background: white;
+}
+.logoutHeaderMain {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 60px;
+}
+.LogoutHeaderButton {
+  width: 100px;
+  height: 40px;
+  color: #000;
+  background: #fff;
+  border: 5px solid;
+  border-image: linear-gradient(to right, #ffce32, #23e5db, #3a77ff) 1;
+}
