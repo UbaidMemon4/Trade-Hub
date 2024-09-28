@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Button } from "antd";
-import { LoginOutlined, UserAddOutlined } from "@ant-design/icons";
+import { LoginOutlined, PlusCircleTwoTone } from "@ant-design/icons";
 import Link from "next/link";
 import logoTH from "../../../../public/Black & White Minimalist Busines.png";
 import Image from "next/image";
@@ -28,10 +28,16 @@ const logoutHeader = () => {
         </div>
       </Link>
       <div>
-        <Button classNames="LogoutHeaderButton" onClick={logoutFunction}>
-          <LoginOutlined />
-          Logout
-        </Button>
+        <div>
+          <Button classNames="LogoutHeaderButton">
+            <PlusCircleTwoTone />
+            Add New Post
+          </Button>
+          <Button classNames="LogoutHeaderButton" onClick={logoutFunction}>
+            <LoginOutlined />
+            Logout
+          </Button>
+        </div>
       </div>
     </div>
   );

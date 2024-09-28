@@ -5,9 +5,10 @@ const AuthModal = require("../Modal/authModal");
 // Create-New-Post Controller
 exports.createPostController = async (req, res) => {
   try {
-    const { title, description, category, img, modal, token } = req.body;
+    const { title, description, category, img, modal, location, token } =
+      req.body;
     // User validation: Check if all required fields are present
-    if (!title || !description || !category || !img || !token) {
+    if (!title || !description || !category || !img || !location || !token) {
       return res.status(400).send({
         success: false,
         message: "Please provide all fields",
@@ -28,6 +29,7 @@ exports.createPostController = async (req, res) => {
       category,
       img,
       modal,
+      location,
     });
     // Save the new post to the database
     await newPost.save();

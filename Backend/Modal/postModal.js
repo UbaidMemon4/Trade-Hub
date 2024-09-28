@@ -18,6 +18,10 @@ const PostSchema = new mongoose.Schema(
       type: String,
       require: [true, "image is requried"],
     },
+    location: {
+      type: String,
+      require: [true, "location is requried"],
+    },
     modal: {
       type: String,
     },
