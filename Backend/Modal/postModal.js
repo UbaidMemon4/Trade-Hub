@@ -25,6 +25,12 @@ const PostSchema = new mongoose.Schema(
     modal: {
       type: String,
     },
+    auth: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "Auth",
+      },
+    ],
   },
   { timestamps: true }
 );

@@ -26,7 +26,7 @@ router.delete("/delete-post/:id", deletePostController);
 //Get-All-Post || get
 router.get("/user-post", userPostController);
 
-//Update-Post || GET
-router.get("/category-post", PostByCategoryController);
+//Update-Post || POST
+router.post("/category-post", PostByCategoryController);
 
 module.exports = router;

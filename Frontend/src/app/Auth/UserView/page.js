@@ -7,7 +7,6 @@ import Cookies from "js-cookie";
 import LogoutHeader from "../../Component/UserView/logoutHeader";
 import CategorySelection from "@/app/Component/UserView/categorySelection";
 import Carousal from "@/app/Component/UserView/Carousal";
-import CategoryWithCard from "@/app/Component/UserView/categoryWithCard";
 
 const UserView = () => {
   const router = useRouter();
@@ -31,9 +30,6 @@ const UserView = () => {
       </div>
       <div>
         <CategorySelection />
-      </div>
-      <div>
-        <CategoryWithCard />
       </div>
     </div>
   );
