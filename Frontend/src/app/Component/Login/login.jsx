@@ -18,14 +18,13 @@ const LoginComponent = () => {
 
   const onFinish = async (values) => {
     try {
-      //   const { data } = await axios.post(`${process.env.BASE_URL}/auth/login`, {
       const { data } = await axios.post(`http://localhost:3001/auth/login`, {
         email: values.email,
         password: values.password,
       });
       if (data.success) {
         toast.success(data.message);
-        router.push("/Auth/UserView");
+        router.push("/");
         Cookies.set("JWT", data.token);
         dispatch(authAction.Login);
       }

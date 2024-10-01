@@ -1,13 +1,12 @@
 "use client";
 
-import { Login } from "./Redux/tradeSlice";
+import UserView from "./Auth/UserView/page";
 import "./globals.css";
-import Home from "./Auth/Home/page";
 
 export default function Main() {
   return (
     <main>
-      <Home />
+      <UserView />
     </main>
   );
 }

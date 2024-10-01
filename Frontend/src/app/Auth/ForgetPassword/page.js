@@ -1,10 +1,9 @@
 "use client";
 import ForgetComponent from "@/app/Component/Forget/forget";
-import Loginheader from "@/app/Component/Home/loginheader";
+import Loginheader from "@/app/Component/LoginHeader/loginheader";
 import React, { useEffect } from "react";
 import "../../globals.css";
 import { useRouter } from "next/navigation";
-import Cookies from "js-cookie";
 
 const Forget = () => {
   const router = useRouter();
@@ -14,7 +13,7 @@ const Forget = () => {
     document.title = `Login Your Account || Trade Hub`;
 
     if (user) {
-      router.push("/Auth/UserView");
+      router.push("/Auth/Login");
     }
   }, [router]);
 

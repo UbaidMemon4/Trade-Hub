@@ -43,17 +43,19 @@ const contentStyle = {
 };
 
 const Carousal = () => (
-  <Carousel autoplay>
-    <div style={contentStyle}>
-      <Image src={Workplace} alt="Workplace" width={1500} height={300} />
-    </div>
-    <div style={contentStyle}>
-      <Image src={E_Commerce} alt="E-Commerce " width={1500} height={300} />
-    </div>
-    <div style={contentStyle}>
-      <Image src={Unsplash} alt="Unsplash" width={1500} height={300} />
-    </div>
-  </Carousel>
+  <div className="caroudsalMainDiv">
+    <Carousel autoplay>
+      <div style={contentStyle}>
+        <Image src={Workplace} alt="Workplace" width={1500} height={300} />
+      </div>
+      <div style={contentStyle}>
+        <Image src={E_Commerce} alt="E-Commerce " width={1500} height={300} />
+      </div>
+      <div style={contentStyle}>
+        <Image src={Unsplash} alt="Unsplash" width={1500} height={300} />
+      </div>
+    </Carousel>
+  </div>
 );
 
 export default Carousal;

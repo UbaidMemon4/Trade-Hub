@@ -30,7 +30,7 @@ const CategorySelection = () => {
     }
   };
   return (
-    <div className="categoryMail">
+    <div className="categoryMain">
       <div>
         <h1>All categories</h1>
       </div>

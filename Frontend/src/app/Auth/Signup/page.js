@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import Loginheader from "@/app/Component/Home/loginheader";
+import Loginheader from "@/app/Component/LoginHeader/loginheader";
 import SignupComponent from "@/app/Component/Signup/signup";
 import "../../globals.css";
 import { useRouter } from "next/navigation";
@@ -13,7 +13,7 @@ const Signup = () => {
     document.title = `Sign Up Or Create A New Account || Trade Hub`;
 
     if (user) {
-      router.push("/Auth/UserView");
+      router.push("/");
     }
   }, [router]);
 
