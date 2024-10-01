@@ -3,18 +3,17 @@ import "./index.css";
 import React from "react";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Cookies from "js-cookie";
 import LogoutHeader from "../../Component/UserView/logoutHeader";
 import CategorySelection from "@/app/Component/UserView/categorySelection";
 import Carousal from "@/app/Component/UserView/Carousal";
+import { useSelector } from "react-redux";
 
 const UserView = () => {
   const router = useRouter();
 
+  const user = useSelector((state) => state.trade.isLogin);
   useEffect(() => {
     document.title = `Home || Trade Hub`;
-    // const user = useSelector((state) => state.trade.Login);
-    const user = Cookies.get("JWT");
 
     if (!user) {
       router.push("/Auth/Login");

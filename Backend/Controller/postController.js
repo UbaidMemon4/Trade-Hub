@@ -178,12 +178,11 @@ exports.PostByCategoryController = async (req, res) => {
     const { category } = req.body;
 
     // Fetch all posts and populate the 'auth' field
-    const posts = await PostModal.find({}).populate("auth");
+    const posts = await PostModal.find({ category }).populate("auth");
 
     // Filter posts by category
-    const categoryPost = posts.filter((post) => post.category === category);
 
-    if (categoryPost.length === 0) {
+    if (posts.length === 0) {
       return res.status(404).send({
         success: false,
         message: "No posts found for this category",
@@ -193,13 +192,13 @@ exports.PostByCategoryController = async (req, res) => {
     return res.status(200).send({
       success: true,
       message: "Posts found for the given category",
-      categoryPost,
+      posts,
     });
   } catch (error) {
     return res.status(500).send({
       success: false,
       message: "Error fetching posts by category",
-      error: error.message, // Include error details
+      error: error.message,
     });
   }
 };

@@ -21,7 +21,7 @@ const CategorySelection = () => {
         { category }
       );
       if (data.success) {
-        setposts(data.categoryPost);
+        setposts(data.posts);
       }
     } catch (error) {
       const errorMessage =

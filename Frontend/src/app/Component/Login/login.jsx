@@ -4,8 +4,9 @@ import "./index.css";
 import { Button, Form, Input } from "antd";
 import Cookies from "js-cookie";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
+import Link from "next/link";
 
 const introduce =
   "A trade hub is a central location where goods and services are exchanged between different regions, often serving as a key point in global supply chains. These hubs facilitate trade by offering infrastructure, logistics, and financial services to streamline the flow of goods, making them vital to international commerce.";
@@ -75,6 +76,7 @@ const LoginComponent = () => {
               </Form.Item>
 
               <Form.Item
+                style={{ margin: 0 }}
                 label="Password"
                 name="password"
                 rules={[
@@ -87,6 +89,22 @@ const LoginComponent = () => {
                 <Input.Password />
               </Form.Item>
 
+              <Form.Item
+                wrapperCol={{
+                  offset: 8,
+                  span: 16,
+                }}
+              >
+                <Link href="/Auth/ForgetPassword">
+                  <p
+                    style={{
+                      color: "blue",
+                    }}
+                  >
+                    Forget Password
+                  </p>
+                </Link>
+              </Form.Item>
               <Form.Item
                 wrapperCol={{
                   offset: 8,

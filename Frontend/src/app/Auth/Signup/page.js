@@ -1,17 +1,16 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Loginheader from "@/app/Component/Home/loginheader";
 import SignupComponent from "@/app/Component/Signup/signup";
 import "../../globals.css";
 import { useRouter } from "next/navigation";
-import Cookies from "js-cookie";
+import { useSelector } from "react-redux";
 
 const Signup = () => {
   const router = useRouter();
+  const user = useSelector((state) => state.trade.isLogin);
   useEffect(() => {
     document.title = `Sign Up Or Create A New Account || Trade Hub`;
-    // const user = useSelector((state) => state.trade.Login);
-    const user = Cookies.get("JWT");
 
     if (user) {
       router.push("/Auth/UserView");

@@ -1,24 +1,33 @@
 "use client";
 import React from "react";
 import { Button } from "antd";
-import { LoginOutlined, PlusCircleTwoTone } from "@ant-design/icons";
+import {
+  LoginOutlined,
+  PlusCircleOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 import Link from "next/link";
 import logoTH from "../../../../public/Black & White Minimalist Busines.png";
 import Image from "next/image";
 import "./index.css";
 import Cookies from "js-cookie";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { Logout } from "@/app/Redux/tradeSlice";
 
 const logoutHeader = () => {
   const router = useRouter();
   const dispatch = useDispatch();
+  const pathname = usePathname();
+
   const logoutFunction = () => {
     Cookies.remove("JWT");
     dispatch(Logout());
 
     router.push("/Auth/Home");
+  };
+  const profileFunction = () => {
+    router.push("/Auth/Profile");
   };
   return (
     <div className="logoutHeaderMain">
@@ -28,9 +37,15 @@ const logoutHeader = () => {
         </div>
       </Link>
       <div>
-        <div>
+        <div className="userViewHeaderButtons">
+          {pathname === "/Auth/Profile" ? null : (
+            <Button classNames="LogoutHeaderButton" onClick={profileFunction}>
+              <UserOutlined />
+              View Profile
+            </Button>
+          )}
           <Button classNames="LogoutHeaderButton">
-            <PlusCircleTwoTone />
+            <PlusCircleOutlined />
             Add New Post
           </Button>
           <Button classNames="LogoutHeaderButton" onClick={logoutFunction}>

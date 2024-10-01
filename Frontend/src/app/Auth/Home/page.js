@@ -5,16 +5,14 @@ import React from "react";
 import "../../globals.css";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Cookies from "js-cookie";
+import { useSelector } from "react-redux";
 
 const Home = () => {
   const router = useRouter();
+  const user = useSelector((state) => state.trade.isLogin);
 
   useEffect(() => {
     document.title = `Login Your Account || Trade Hub`;
-    // const user = useSelector((state) => state.trade.Login);
-    const user = Cookies.get("JWT");
-
     if (user) {
       router.push("/Auth/UserView");
     }
