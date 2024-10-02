@@ -24,7 +24,7 @@ const logoutHeader = () => {
     Cookies.remove("JWT");
     dispatch(Logout());
 
-    router.push("/Auth/Home");
+    router.push("/");
   };
   const profileFunction = () => {
     router.push("/Auth/Profile");

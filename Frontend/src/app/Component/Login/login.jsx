@@ -7,6 +7,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import Link from "next/link";
+import { AddData, Login } from "@/app/Redux/tradeSlice";
 
 const introduce =
   "A trade hub is a central location where goods and services are exchanged between different regions, often serving as a key point in global supply chains. These hubs facilitate trade by offering infrastructure, logistics, and financial services to streamline the flow of goods, making them vital to international commerce.";
@@ -26,7 +27,8 @@ const LoginComponent = () => {
         toast.success(data.message);
         router.push("/");
         Cookies.set("JWT", data.token);
-        dispatch(authAction.Login);
+        dispatch(Login());
+        dispatch(AddData(data.user));
       }
     } catch (error) {
       const errorMessage =

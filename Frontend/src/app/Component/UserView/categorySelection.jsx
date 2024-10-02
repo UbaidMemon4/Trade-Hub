@@ -11,9 +11,28 @@ import {
 import toast from "react-hot-toast";
 import axios from "axios";
 import PostCard from "../Card/Card";
+import { Button, Modal } from "antd";
+import { useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const CategorySelection = () => {
+  const router = useRouter();
+
+  const [visible, setVisible] = useState(false);
   const [posts, setposts] = useState({});
+  const user = useSelector((state) => state.trade.isLogin);
+  const PostMangement = async (category) => {
+    console.log("category", category);
+
+    if (user) {
+    } else {
+      setVisible(true);
+    }
+  };
+  const handleCancel = () => {
+    setVisible(false);
+  };
   const onFinish = async (category) => {
     try {
       const { data } = await axios.post(
@@ -91,7 +110,7 @@ const CategorySelection = () => {
           posts.map((post) => {
             console.log("post", post);
             return (
-              <div key={post._id}>
+              <div onClick={PostMangement} key={post._id}>
                 <PostCard
                   title={post?.title}
                   description={post?.description}
@@ -105,6 +124,20 @@ const CategorySelection = () => {
             <h1>Tap a category to see more related posts.</h1>
           </div>
         )}
+        <Modal visible={visible} footer={null} onCancel={handleCancel}>
+          <p className="modalCategoryParagrafh">
+            Choose an option below to log in with an existing account or create
+            a new one.
+          </p>
+          <div className="modalCategoryButtons">
+            <Link href="/Auth/Signup">
+              <Button className="modalCategoryButton">Signup</Button>
+            </Link>
+            <Link href="/Auth/Login">
+              <Button className="modalCategoryButton">Login</Button>
+            </Link>
+          </div>
+        </Modal>
       </div>
     </div>
   );

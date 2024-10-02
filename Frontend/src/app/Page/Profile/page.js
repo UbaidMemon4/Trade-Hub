@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import LogoutHeader from "../../Component/UserView/logoutHeader";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
@@ -6,7 +7,8 @@ import { useRouter } from "next/navigation";
 const Profile = () => {
   const router = useRouter();
   const user = useSelector((state) => state.trade.isLogin);
-
+  const userLogin = useSelector((state) => state.trade.userData);
+  console.log("userLogin=>", userLogin);
   useEffect(() => {
     document.title = `Login Your Account || Trade Hub`;
     if (!user) {
