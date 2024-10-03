@@ -1,6 +1,6 @@
 "use client";
-import React from "react";
-import { Button } from "antd";
+import React, { useState } from "react";
+import { Button, Form, Input, Modal, Select, Upload } from "antd";
 import {
   LoginOutlined,
   PlusCircleOutlined,
@@ -14,8 +14,45 @@ import Cookies from "js-cookie";
 import { usePathname, useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { Logout } from "@/app/Redux/tradeSlice";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 const logoutHeader = () => {
+  const [input, setInput] = useState({});
+  const { Option } = Select;
+  const [visible, setVisible] = useState(false);
+  const token = Cookies.get("JWT");
+  const onFinish = async (values) => {
+    console.log("values", values);
+    try {
+      const { data } = await axios.post(
+        `http://localhost:3001/post/create-post`,
+        {
+          title: values.title,
+          description: values.description,
+          category: values.category,
+          image: values.img,
+          modal: values.modal,
+          location: values.location,
+          token: token,
+        }
+      );
+
+      if (data.success) {
+        console.log("data", data);
+        toast.success("Blog Created");
+        setVisible(false);
+      }
+    } catch (error) {
+      toast.error(
+        error.response?.data?.message ||
+          "An error occurred while creating the post."
+      );
+    }
+  };
+  const handleCancel = () => {
+    setVisible(false);
+  };
   const router = useRouter();
   const dispatch = useDispatch();
   const pathname = usePathname();
@@ -44,15 +81,118 @@ const logoutHeader = () => {
               View Profile
             </Button>
           )}
-          <Button classNames="LogoutHeaderButton">
+          <Button
+            onClick={() => setVisible(true)}
+            className="LogoutHeaderButton"
+          >
             <PlusCircleOutlined />
             Add New Post
           </Button>
+
           <Button classNames="LogoutHeaderButton" onClick={logoutFunction}>
             <LoginOutlined />
             Logout
           </Button>
         </div>
+        <Modal open={visible} footer={null} onCancel={handleCancel}>
+          <Form
+            name="basic"
+            labelCol={{
+              span: 8,
+            }}
+            wrapperCol={{
+              span: 16,
+            }}
+            initialValues={{
+              remember: true,
+            }}
+            onFinish={onFinish}
+            autoComplete="off"
+          >
+            <Form.Item
+              style={{ marginTop: "4px" }}
+              name="title"
+              label="Title"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your title!",
+                },
+              ]}
+            >
+              <Input value={input.title} placeholder="Title " />
+            </Form.Item>
+            <Form.Item
+              name="description"
+              label="Description"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your description!",
+                },
+              ]}
+            >
+              <Input value={input.description} placeholder="description " />
+            </Form.Item>
+            <Form.Item
+              name="category"
+              label="Category"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your category!",
+                },
+              ]}
+            >
+              <Select value={input.category} placeholder="Select a category">
+                <Option value="Mobiles">Mobiles</Option>
+                <Option value="Vehicles">Vehicles</Option>
+                <Option value="Animals">Animals</Option>
+                <Option value="Books">Books</Option>
+                <Option value="Sports">Sports</Option>
+                <Option value="Dress">Dress</Option>
+              </Select>
+            </Form.Item>
+            <Form.Item
+              name="location"
+              label="Location"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your location!",
+                },
+              ]}
+            >
+              <Input value={input.location} placeholder="Location " />
+            </Form.Item>
+            <Form.Item label="Image (Optional)" name="image">
+              <Upload listType="picture-card" accept=".png" maxCount={1}>
+                <button type="button">
+                  Add
+                  {/* <PlusOutlined /> */}
+                  <div
+                    style={{
+                      marginTop: 8,
+                    }}
+                  >
+                    Upload
+                  </div>
+                </button>
+              </Upload>
+            </Form.Item>
+
+            <Form.Item
+              wrapperCol={{
+                offset: 8,
+                span: 16,
+              }}
+            >
+              <Button className="" type="primary" htmlType="submit">
+                {input.id ? "Update" : "Submit"}
+              </Button>
+            </Form.Item>
+          </Form>
+        </Modal>
       </div>
     </div>
   );

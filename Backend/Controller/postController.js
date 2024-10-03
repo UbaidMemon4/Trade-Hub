@@ -9,7 +9,7 @@ exports.createPostController = async (req, res) => {
       req.body;
     // User validation: Check if all required fields are present
 
-    if (!title || !description || !category || !img || !location || !token) {
+    if (!title || !description || !category || !location || !token) {
       return res.status(400).send({
         success: false,
         message: "Please provide all fields",

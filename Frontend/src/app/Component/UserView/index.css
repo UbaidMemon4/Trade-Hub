@@ -65,3 +65,8 @@
   border: 5px solid;
   border-image: linear-gradient(to right, #ffce32, #23e5db, #3a77ff) 1;
 }
+.PostCard {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
