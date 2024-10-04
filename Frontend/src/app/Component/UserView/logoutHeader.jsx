@@ -18,12 +18,30 @@ import toast from "react-hot-toast";
 import axios from "axios";
 
 const logoutHeader = () => {
+  const postEditId = useSelector((state) => state.trade.postEditId);
+
   const [input, setInput] = useState({});
   const { Option } = Select;
   const [visible, setVisible] = useState(false);
   const token = Cookies.get("JWT");
+  const getBlogDetailForEdit = async () => {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3001/post/get-post/${postEditId}`
+      );
+      if (data?.success) {
+        setVisible(true);
+        setInput({
+          title: data?.post?.title,
+          image: data?.post?.image,
+          id: data?.post?._id,
+        });
+      }
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  };
   const onFinish = async (values) => {
-    console.log("values", values);
     try {
       const { data } = await axios.post(
         `http://localhost:3001/post/create-post`,
@@ -66,6 +84,33 @@ const logoutHeader = () => {
   const profileFunction = () => {
     router.push("/Auth/Profile");
   };
+  const onFinishEdit = async (values) => {
+    try {
+      const { data } = await axios.put(
+        `http://localhost:3001/postupdate-blog/${input.id}`,
+        {
+          title: values.title,
+          description: values.description,
+          category: values.category,
+          image: values.img,
+          modal: values.modal,
+          location: values.location,
+        }
+      );
+      if (data.success) {
+        toast.success("Blog Updated ");
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+    }
+  };
+  useEffect(() => {
+    if (postEditId) {
+      getBlogDetailForEdit();
+    }
+  }, []);
+  let formFunction = input.id ? onFinishEdit : onFinish;
+
   return (
     <div className="logoutHeaderMain">
       <Link href="/Auth/UserView">
@@ -106,7 +151,7 @@ const logoutHeader = () => {
             initialValues={{
               remember: true,
             }}
-            onFinish={onFinish}
+            onFinish={formFunction}
             autoComplete="off"
           >
             <Form.Item

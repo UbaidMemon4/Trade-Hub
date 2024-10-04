@@ -15,10 +15,6 @@
 .LogoutHeaderButton {
   width: 100px;
   height: 40px;
-  color: #000;
-  background: #fff;
-  border: 5px solid;
-  border-image: linear-gradient(to right, #ffce32, #23e5db, #3a77ff) 1;
 }
 .CategoryOption {
   margin: 5px 0;
@@ -68,5 +64,13 @@
 .PostCard {
   display: flex;
   justify-content: space-between;
-  margin: 5px 0;
+  gap: 5px 0;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
+.editDeleteButton {
+  display: flex;
+  justify-content: center;
+  gap: 155px;
+  /* text-align: center; */
 }

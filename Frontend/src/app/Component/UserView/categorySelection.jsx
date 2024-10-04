@@ -15,6 +15,7 @@ import { Button, Modal } from "antd";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Cookies from "js-cookie";
 
 const CategorySelection = () => {
   const router = useRouter();
@@ -108,13 +109,14 @@ const CategorySelection = () => {
       <div className="PostCard">
         {posts && posts.length > 0 ? (
           posts.map((post) => {
-            console.log("post", post);
             return (
               <div onClick={PostMangement} key={post._id}>
                 <PostCard
                   title={post?.title}
                   description={post?.description}
                   image={post?.img}
+                  isUser={Cookies.get("JWT") === post?.user?.token}
+                  id={post?._id}
                 />
               </div>
             );

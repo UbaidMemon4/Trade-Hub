@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { isLogin: false, userData: null };
+const initialState = { isLogin: false, userData: null, postEditId: "" };
 const tradeSlice = createSlice({
   name: "trade",
   initialState,
@@ -14,9 +14,11 @@ const tradeSlice = createSlice({
     },
     AddData(state, action) {
       state.userData = action.payload;
-      console.log(state.userData, "User Data");
+    },
+    EditId(state, action) {
+      state.postEditId = action.payload;
     },
   },
 });
-export const { Login, Logout, AddData } = tradeSlice.actions;
+export const { Login, Logout, AddData, EditId } = tradeSlice.actions;
 export default tradeSlice.reducer;
