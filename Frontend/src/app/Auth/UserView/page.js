@@ -7,7 +7,7 @@ import Carousal from "@/app/Component/UserView/Carousal";
 import Loginheader from "@/app/Component/LoginHeader/loginheader";
 import { useSelector } from "react-redux";
 import SearchBar from "@/app/Component/UserView/SearchBar";
-
+import "../../globals.css";
 const UserView = () => {
   const user = useSelector((state) => state.trade.isLogin);
   useEffect(() => {

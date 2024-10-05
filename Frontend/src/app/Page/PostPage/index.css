@@ -1,0 +1,19 @@
+.postPage {
+  margin: 0 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.postPage > div > Image {
+  background-size: cover;
+}
+
+.postCard {
+  width: 700px;
+  background-color: #94d6f6;
+  color: black;
+}
+.postCard > h1 {
+  align-items: center;
+}

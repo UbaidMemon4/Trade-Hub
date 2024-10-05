@@ -34,7 +34,7 @@ const LogoutHeader = () => {
         setVisible(true);
         setInput({
           title: data?.post?.title,
-          image: data?.post?.image,
+          img: data?.post?.img,
           id: data?.post?._id,
         });
       }
@@ -94,7 +94,7 @@ const LogoutHeader = () => {
           title: values.title,
           description: values.description,
           category: values.category,
-          image: values.img,
+          img: values.img,
           modal: values.modal,
           location: values.location,
         }

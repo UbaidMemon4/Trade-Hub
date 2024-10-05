@@ -1,3 +1,4 @@
+require("dotenv").config();
 const cloudinary = require("cloudinary").v2;
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -11,8 +12,9 @@ exports.uploadImage = async (filePath) => {
     });
     console.log("Image uploaded successfully:", result.secure_url);
 
-    return secure_url;
+    return result.secure_url;
   } catch (error) {
     console.error("Error uploading image to Cloudinary:", error);
+    throw error;
   }
 };

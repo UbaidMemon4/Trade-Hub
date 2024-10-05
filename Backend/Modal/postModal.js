@@ -22,9 +22,6 @@ const PostSchema = new mongoose.Schema(
       type: String,
       require: [true, "location is requried"],
     },
-    modal: {
-      type: String,
-    },
     auth: [
       {
         type: mongoose.Types.ObjectId,
