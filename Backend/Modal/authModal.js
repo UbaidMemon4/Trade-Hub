@@ -18,6 +18,10 @@ const AuthSchema = new mongoose.Schema(
       type: String,
       require: [true, "otp is requried"],
     },
+    number: {
+      type: String,
+      require: [true, "number is requried"],
+    },
     token: {
       type: String,
       require: [true, "token is requried"],

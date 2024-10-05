@@ -1,26 +1,3 @@
-// import React from "react";
-// import { Carousel } from "antd";
-// import Image from "next/image";
-
-// const contentStyle = {
-//   height: "160px",
-//   color: "#fff",
-//   lineHeight: "160px",
-//   textAlign: "center",
-//   background: "#364d79",
-// };
-// const Carousal = () => (
-//   <Carousel autoplay>
-//     <div>
-//       <Image
-//         src="https://images.olx.com.pk/thumbnails/489257159-800x600.webp"
-//         alt="Trade Hub Logo"
-//         style={contentStyle}
-//       />
-//     </div>
-//   </Carousel>
-// );
-// export default Carousal;
 import React from "react";
 import { Carousel } from "antd";
 import Image from "next/image";

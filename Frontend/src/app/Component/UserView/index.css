@@ -72,5 +72,13 @@
   display: flex;
   justify-content: center;
   gap: 155px;
-  /* text-align: center; */
+}
+.searchBar {
+  height: auto;
+  text-align: center;
+  margin: 5px 0;
+}
+.searchBar Input {
+  padding: 5px 10px;
+  border-radius: 5px;
 }

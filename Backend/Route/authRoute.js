@@ -26,7 +26,7 @@ router.post("/forget-password", forgetPassword);
 //New Password || Post
 router.post("/new-password", newPassword);
 
-//Update Profile || Post
-router.post("/update-profile", updateUserContoller);
+//Update Profile || Put
+router.put("/update-profile/:id", updateUserContoller);
 
 module.exports = router;

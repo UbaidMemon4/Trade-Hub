@@ -57,9 +57,19 @@ exports.registerController = async (req, res) => {
 //Otp Send User Register
 exports.registerControllerOtp = async (req, res) => {
   try {
-    const { username, email, password, otp, VerificationOtp } = req.body;
+    const { username, email, password, otp, VerificationOtp, number } =
+      req.body;
+    console.log("req.body=>", req.body);
+
     //validation
-    if (!username || !email || !password || !otp || !VerificationOtp) {
+    if (
+      !username ||
+      !email ||
+      !password ||
+      !otp ||
+      !VerificationOtp ||
+      !number
+    ) {
       return res.status(400).send({
         success: false,
         message: "Please fill in all fields",
@@ -79,6 +89,7 @@ exports.registerControllerOtp = async (req, res) => {
       username,
       email,
       password: hashedPassword,
+      number: number,
     });
     await user.save();
     return res.status(201).send({
@@ -253,9 +264,11 @@ exports.newPassword = async (req, res) => {
 //Update User Detail
 exports.updateUserContoller = async (req, res) => {
   try {
+    console.log("req.params", req.params);
+
     const { id } = req.params;
-    const user = await UserModal.findOneAndUpdate(
-      { token: id },
+    const user = await AuthModal.findOneAndUpdate(
+      { _id: id },
       { ...req.body },
       { new: true }
     );

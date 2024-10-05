@@ -1,20 +1,22 @@
 const { default: mongoose } = require("mongoose");
 const PostModal = require("../Modal/postModal");
 const AuthModal = require("../Modal/authModal");
+const { uploadImage } = require("../config/cloudinary");
 
 // Create-New-Post Controller
 exports.createPostController = async (req, res) => {
   try {
     const { title, description, category, img, modal, location, token } =
       req.body;
-    // User validation: Check if all required fields are present
 
-    if (!title || !description || !category || !location || !token) {
+    // Check if required fields are provided
+    if (!title || !description || !category || !location || !img || !token) {
       return res.status(400).send({
         success: false,
         message: "Please provide all fields",
       });
     }
+
     // Find the user by token
     const user = await AuthModal.findOne({ token });
     if (!user) {
@@ -23,20 +25,45 @@ exports.createPostController = async (req, res) => {
         message: "Unable to find user",
       });
     }
+
+    // Upload image to Cloudinary
+    let imageUrl;
+    if (img && img.file) {
+      try {
+        imageDta = await uploadImage(img.file);
+
+        console.log("Image uploaded successfully:", imageUrl);
+      } catch (error) {
+        return res.status(500).send({
+          success: false,
+          message: "Error while uploading image",
+          error: error.message,
+        });
+      }
+    } else {
+      return res.status(400).send({
+        success: false,
+        message: "Please provide an image",
+      });
+    }
+
     // Create a new post
     const newPost = new PostModal({
       title,
       description,
       category,
-      img,
+      img: imageUrl,
       modal,
       location,
     });
+
     // Save the new post to the database
     await newPost.save();
+
+    // Add post to user's post list and save user
     user.post.push(newPost);
-    // Save the updated user
     await user.save();
+
     return res.status(201).send({
       success: true,
       message: "Post created successfully",
@@ -44,6 +71,7 @@ exports.createPostController = async (req, res) => {
       user,
     });
   } catch (error) {
+    console.error("Error while creating post:", error);
     return res.status(500).send({
       success: false,
       message: "Error while creating post",
@@ -81,6 +109,7 @@ exports.getAllPostController = async (req, res) => {
 exports.updatePostController = async (req, res) => {
   try {
     const { id } = req.params;
+
     const post = await PostModal.findByIdAndUpdate(
       id,
       { ...req.body },
@@ -122,8 +151,9 @@ exports.deletePostController = async (req, res) => {
 exports.userPostController = async (req, res) => {
   try {
     const { id } = req.params;
-    const token = id;
-    const populatedUser = await AuthModal.findOne({ token }).populate("Post");
+    const populatedUser = await AuthModal.findOne({ id }).populate("posts");
+    console.log("populatedUser", populatedUser);
+
     if (!populatedUser) {
       res.status(404).send({
         success: false,
@@ -144,43 +174,12 @@ exports.userPostController = async (req, res) => {
   }
 };
 
-//Get-Post-By-Category
-// exports.PostByCategoryController = async (req, res) => {
-//   try {
-//     const { category } = req.body;
-
-//     const posts = await PostModal.find({}).populate("auth");
-//     console.log("posts=>", category);
-//     const categoryPost = posts.filter((post) => post.category === category);
-//     console.log("categoryPost=>", categoryPost);
-//     if (!categoryPost) {
-//       res.status(404).send({
-//         success: false,
-//         message: "Post not found with this category",
-//       });
-//     }
-//     return res.status(200).send({
-//       success: true,
-//       message: "Category Found Sucessfully by this category Post",
-//       posts,
-//     });
-//   } catch (error) {
-//     return res.status(500).send({
-//       success: false,
-//       message: "Error in user Post",
-//       error,
-//     });
-//   }
-// };
 // Get-Post-By-Category
 exports.PostByCategoryController = async (req, res) => {
   try {
     const { category } = req.body;
 
-    // Fetch all posts and populate the 'auth' field
     const posts = await PostModal.find({ category }).populate("auth");
-
-    // Filter posts by category
 
     if (posts.length === 0) {
       return res.status(404).send({
@@ -199,6 +198,61 @@ exports.PostByCategoryController = async (req, res) => {
       success: false,
       message: "Error fetching posts by category",
       error: error.message,
+    });
+  }
+};
+
+// Get-Post-By-Search
+exports.PostBySearchController = async (req, res) => {
+  try {
+    const { text } = req.body;
+
+    const posts = await db.collection
+      .find({ title: { $regex: `^${text}`, $options: "i" } })
+      .toArray();
+    if (posts.length === 0) {
+      return res.status(404).send({
+        success: false,
+        message: "No posts found for this word",
+      });
+    }
+
+    return res.status(200).send({
+      success: true,
+      message: "Posts found for the given word",
+      posts,
+    });
+  } catch (error) {
+    return res.status(500).send({
+      success: false,
+      message: "Error fetching posts by search",
+      error: error.message,
+    });
+  }
+};
+
+//Get-Id-Post
+exports.idPostController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const populatedPost = await PostModalModal.findOne({ id }).populate("Auth");
+
+    if (!populatedPost) {
+      res.status(404).send({
+        success: false,
+        message: "Post not found with this id",
+      });
+    }
+    return res.status(200).send({
+      success: true,
+      message: "Post Found",
+      populatedPost,
+    });
+  } catch (error) {
+    return res.status(500).send({
+      success: false,
+      message: "Error in getting Post",
+      error,
     });
   }
 };

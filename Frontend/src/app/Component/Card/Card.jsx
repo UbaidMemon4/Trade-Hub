@@ -32,8 +32,8 @@ const PostCard = ({ title, description, img, isUser, id }) => {
         !isUser
           ? [
               <div className="editDeleteButton">
-                <DeleteOutlined key="delete" onClick={handleDelete} />
-                <EditOutlined onClick={() => handleEdit(blog.id)} />
+                <DeleteOutlined onClick={handleDelete} />
+                <EditOutlined onClick={() => handleEdit(post.id)} />
               </div>,
             ]
           : null

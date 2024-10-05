@@ -1,9 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Form, Input, Modal, Select, Upload } from "antd";
 import {
   LoginOutlined,
   PlusCircleOutlined,
+  PlusOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import Link from "next/link";
@@ -12,12 +13,12 @@ import Image from "next/image";
 import "./index.css";
 import Cookies from "js-cookie";
 import { usePathname, useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Logout } from "@/app/Redux/tradeSlice";
 import toast from "react-hot-toast";
 import axios from "axios";
 
-const logoutHeader = () => {
+const LogoutHeader = () => {
   const postEditId = useSelector((state) => state.trade.postEditId);
 
   const [input, setInput] = useState({});
@@ -43,13 +44,14 @@ const logoutHeader = () => {
   };
   const onFinish = async (values) => {
     try {
+      console.log(values);
       const { data } = await axios.post(
         `http://localhost:3001/post/create-post`,
         {
           title: values.title,
           description: values.description,
           category: values.category,
-          image: values.img,
+          img: values.img,
           modal: values.modal,
           location: values.location,
           token: token,
@@ -82,7 +84,7 @@ const logoutHeader = () => {
     router.push("/");
   };
   const profileFunction = () => {
-    router.push("/Auth/Profile");
+    router.push("/Page/Profile");
   };
   const onFinishEdit = async (values) => {
     try {
@@ -210,11 +212,11 @@ const logoutHeader = () => {
             >
               <Input value={input.location} placeholder="Location " />
             </Form.Item>
-            <Form.Item label="Image (Optional)" name="image">
+            <Form.Item label="Image (Optional)" name="img">
               <Upload listType="picture-card" accept=".png" maxCount={1}>
                 <button type="button">
                   Add
-                  {/* <PlusOutlined /> */}
+                  <PlusOutlined />
                   <div
                     style={{
                       marginTop: 8,
@@ -243,4 +245,4 @@ const logoutHeader = () => {
   );
 };
 
-export default logoutHeader;
+export default LogoutHeader;

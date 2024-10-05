@@ -21,12 +21,11 @@ const CategorySelection = () => {
   const router = useRouter();
 
   const [visible, setVisible] = useState(false);
-  const [posts, setposts] = useState({});
+  const [posts, setposts] = useState(null);
   const user = useSelector((state) => state.trade.isLogin);
-  const PostMangement = async (category) => {
-    console.log("category", category);
-
+  const PostMangement = async (id) => {
     if (user) {
+      router.push(`/Page/PostPage/${id}`);
     } else {
       setVisible(true);
     }
@@ -42,6 +41,8 @@ const CategorySelection = () => {
       );
       if (data.success) {
         setposts(data.posts);
+      } else {
+        setposts([]);
       }
     } catch (error) {
       const errorMessage =
@@ -107,10 +108,14 @@ const CategorySelection = () => {
         </div>
       </div>
       <div className="PostCard">
-        {posts && posts.length > 0 ? (
+        {posts === null ? (
+          <div>
+            <h1>Tap a category to see more related posts.</h1>
+          </div>
+        ) : posts.length > 0 ? (
           posts.map((post) => {
             return (
-              <div onClick={PostMangement} key={post._id}>
+              <div onClick={() => PostMangement(post._id)} key={post._id}>
                 <PostCard
                   title={post?.title}
                   description={post?.description}
@@ -123,10 +128,11 @@ const CategorySelection = () => {
           })
         ) : (
           <div>
-            <h1>Tap a category to see more related posts.</h1>
+            <h1>No posts found for this category.</h1>
           </div>
         )}
-        <Modal visible={visible} footer={null} onCancel={handleCancel}>
+
+        <Modal open={visible} footer={null} onCancel={handleCancel}>
           <p className="modalCategoryParagrafh">
             Choose an option below to log in with an existing account or create
             a new one.

@@ -17,6 +17,7 @@ const SignupComponent = () => {
     firstname: "",
     email: "",
     password: "",
+    number: "",
   });
   const [verificationOtp, setVerificationOtp] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,6 +31,7 @@ const SignupComponent = () => {
       username: values.username,
       email: values.email,
       password: values.password,
+      number: values.number,
     });
     try {
       const { data } = await axios.post(
@@ -61,6 +63,7 @@ const SignupComponent = () => {
           password: user?.password,
           VerificationOtp: verificationOtp,
           otp: Number(text),
+          number: user?.number,
         }
       );
       if (data.success) {
@@ -139,6 +142,18 @@ const SignupComponent = () => {
                 ]}
               >
                 <Input.Password />
+              </Form.Item>
+              <Form.Item
+                label="Mobile Number"
+                name="number"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your number!",
+                  },
+                ]}
+              >
+                <Input />
               </Form.Item>
 
               <Form.Item

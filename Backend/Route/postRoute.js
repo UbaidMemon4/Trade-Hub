@@ -6,6 +6,8 @@ const {
   deletePostController,
   userPostController,
   PostByCategoryController,
+  PostBySearchController,
+  idPostController,
 } = require("../Controller/postController");
 
 // router object
@@ -23,10 +25,16 @@ router.put("/update-post/id", updatePostController);
 //Delete-Post || delete
 router.delete("/delete-post/:id", deletePostController);
 
-//Get-All-Post || get
-router.get("/user-post", userPostController);
+//Get-User-Post || get
+router.get("/user-post/:id", userPostController);
 
-//Update-Post || POST
+//Category-Post || POST
 router.post("/category-post", PostByCategoryController);
+
+//Search-Post || POST
+router.post("/serch-post", PostBySearchController);
+
+//Id-Post || POST
+router.post("/id-post", idPostController);
 
 module.exports = router;
