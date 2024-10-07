@@ -17,7 +17,7 @@ const Login = () => {
     if (user) {
       router.push("/");
     }
-  }, [router]);
+  }, [router, user]);
   return (
     <div>
       <Loginheader />

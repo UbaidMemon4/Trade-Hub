@@ -15,7 +15,7 @@ const Forget = () => {
     if (user) {
       router.push("/Auth/Login");
     }
-  }, [router]);
+  }, [router, user]);
 
   return (
     <div>
