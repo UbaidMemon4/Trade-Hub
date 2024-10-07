@@ -11,7 +11,10 @@ const SearchBar = () => {
     setText(data);
     try {
       const { data } = await axios.post(
-        `http://localhost:3001/post/serch-post`
+        `http://localhost:3001/post/serch-post`,
+        {
+          text,
+        }
       );
       if (data?.success) {
         setPost(data.posts);
@@ -31,9 +34,9 @@ const SearchBar = () => {
         />
       </div>
       {post && post.length > 0
-        ? post.map((postData) => {
+        ? post.map((postData, index) => {
             return (
-              <div key={postData._id}>
+              <div key={postData._id || index}>
                 <PostCard
                   title={postData?.title}
                   description={postData?.description}

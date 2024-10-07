@@ -113,9 +113,12 @@ const CategorySelection = () => {
             <h1>Tap a category to see more related posts.</h1>
           </div>
         ) : posts.length > 0 ? (
-          posts.map((post) => {
+          posts.map((post, index) => {
             return (
-              <div onClick={() => PostMangement(post._id)} key={post._id}>
+              <div
+                onClick={() => PostMangement(post._id)}
+                key={post._id || index}
+              >
                 <PostCard
                   title={post?.title}
                   description={post?.description}

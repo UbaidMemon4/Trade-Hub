@@ -151,7 +151,10 @@ const UserPostProfile = () => {
       <div>
         {posts.length ? (
           posts.map((post) => (
-            <div onClick={() => PostMangement(post._id)} key={post._id}>
+            <div
+              onClick={() => PostMangement(post._id)}
+              key={post._id || index}
+            >
               <PostCard
                 title={post?.title}
                 description={post?.description}
