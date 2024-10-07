@@ -10,12 +10,12 @@ import {
 } from "@ant-design/icons";
 import toast from "react-hot-toast";
 import axios from "axios";
-import PostCard from "../Card/Card";
 import { Button, Modal } from "antd";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Cookies from "js-cookie";
+import PostCard from "../Card/Card";
 
 const CategorySelection = () => {
   const router = useRouter();

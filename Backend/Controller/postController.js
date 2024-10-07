@@ -6,8 +6,8 @@ const { uploadImage } = require("../config/cloudinary");
 // Create-New-Post Controller
 exports.createPostController = async (req, res) => {
   try {
-    const { title, description, category, img, location, token } = req.body;
-
+    const { title, description, category, location, token } = req.body;
+    const img = req.files;
     // Check if required fields are provided
     if (!title || !description || !category || !location || !img || !token) {
       return res.status(400).send({

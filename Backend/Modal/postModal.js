@@ -22,12 +22,10 @@ const PostSchema = new mongoose.Schema(
       type: String,
       require: [true, "location is requried"],
     },
-    auth: [
-      {
-        type: mongoose.Types.ObjectId,
-        ref: "Auth",
-      },
-    ],
+    auth: {
+      type: mongoose.Types.ObjectId,
+      ref: "Auth",
+    },
   },
   { timestamps: true }
 );
