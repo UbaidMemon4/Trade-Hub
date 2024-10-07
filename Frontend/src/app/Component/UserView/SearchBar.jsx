@@ -1,6 +1,7 @@
 import { Input } from "antd";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import PostCard from "../Card/Card";
 
 const SearchBar = () => {
   const [text, setText] = useState("");

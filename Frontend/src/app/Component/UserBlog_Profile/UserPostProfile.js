@@ -150,7 +150,7 @@ const UserPostProfile = () => {
       </div>
       <div>
         {posts.length ? (
-          posts.map((post) => (
+          posts.map((post, index) => (
             <div
               onClick={() => PostMangement(post._id)}
               key={post._id || index}
