@@ -29,9 +29,9 @@ const PostPage = () => {
     }
   };
   useEffect(() => {
-    document.title = `Selected Page || Trade Hub`;
-    // getPostById()
-  }, []);
+    document.title = `Post Detail || Trade Hub`;
+    getPostById();
+  }, [getPostById]);
 
   return (
     <div>

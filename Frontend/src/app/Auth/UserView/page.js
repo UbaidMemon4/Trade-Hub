@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { useEffect } from "react";
 import LogoutHeader from "../../Component/UserView/logoutHeader";
 import CategorySelection from "@/app/Component/UserView/categorySelection";
 import Carousal from "@/app/Component/UserView/Carousal";
@@ -10,9 +9,7 @@ import SearchBar from "@/app/Component/UserView/SearchBar";
 import "../../globals.css";
 const UserView = () => {
   const user = useSelector((state) => state.trade.isLogin);
-  useEffect(() => {
-    document.title = `Home || Trade Hub`;
-  }, []);
+
   return (
     <div style={{ padding: "0 20px" }}>
       <div>{user ? <LogoutHeader /> : <Loginheader />}</div>

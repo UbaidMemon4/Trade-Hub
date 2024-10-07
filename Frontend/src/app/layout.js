@@ -1,6 +1,6 @@
 "use client";
 import { Provider, useDispatch } from "react-redux";
-import { useEffect } from "react"; // Import useEffect
+import { useEffect } from "react";
 import store from "./Redux/Store";
 import Cookies from "js-cookie";
 import { Login } from "./Redux/tradeSlice";
@@ -14,7 +14,7 @@ function AppContent({ children }) {
     if (user) {
       dispatch(Login());
     }
-  }, [dispatch]);
+  }, [dispatch, user]);
 
   return (
     <html lang="en">

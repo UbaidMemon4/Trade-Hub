@@ -110,7 +110,7 @@ const LogoutHeader = () => {
     if (postEditId) {
       getBlogDetailForEdit();
     }
-  }, []);
+  }, [postEditId, getBlogDetailForEdit]);
   let formFunction = input.id ? onFinishEdit : onFinish;
 
   return (
