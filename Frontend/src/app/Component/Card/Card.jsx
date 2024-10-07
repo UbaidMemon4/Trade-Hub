@@ -24,35 +24,33 @@ const PostCard = ({ title, description, img, isUser, id }) => {
     }
   };
   return (
-    <div id={post.id}>
-      <Card
-        hoverable
-        style={{
-          width: 240,
-        }}
-        actions={
-          !isUser
-            ? [
-                <div className="editDeleteButton">
-                  <DeleteOutlined onClick={handleDelete} />
-                  <EditOutlined onClick={() => handleEdit(post.id)} />
-                </div>,
-              ]
-            : null
-        }
-        cover={
-          <Image
-            alt="Post Image"
-            src={
-              img ||
-              "https://plus.unsplash.com/premium_photo-1677094310956-7f88ae5f5c6b?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            }
-          />
-        }
-      >
-        <Meta title={title} description={description} />
-      </Card>
-    </div>
+    <Card
+      hoverable
+      style={{
+        width: 240,
+      }}
+      actions={
+        !isUser
+          ? [
+              <div className="editDeleteButton">
+                <DeleteOutlined onClick={handleDelete} />
+                <EditOutlined onClick={() => handleEdit(post.id)} />
+              </div>,
+            ]
+          : null
+      }
+      cover={
+        <Image
+          alt="Post Image"
+          src={
+            img ||
+            "https://plus.unsplash.com/premium_photo-1677094310956-7f88ae5f5c6b?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          }
+        />
+      }
+    >
+      <Meta title={title} description={description} />
+    </Card>
   );
 };
 
