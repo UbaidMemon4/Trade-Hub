@@ -108,7 +108,7 @@ const LogoutHeader = () => {
   };
   useEffect(() => {
     if (postEditId) {
-      getBlogDetailForEdit();
+      getBlogDetailForEdit, postEditId();
     }
   }, [getBlogDetailForEdit]);
   let formFunction = input.id ? onFinishEdit : onFinish;

@@ -66,7 +66,7 @@ const UserPostProfile = () => {
         number: populatedUser.number,
       });
     }
-  }, [userLogin, populatedUser]);
+  }, [userLogin, populatedUser, setPopulatedUser, form]);
 
   return (
     <div>
