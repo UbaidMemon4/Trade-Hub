@@ -2,7 +2,7 @@
 import "../../globals.css";
 import "./index.css";
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import LogoutHeader from "@/app/Component/UserView/logoutHeader";
 import { Avatar, Card } from "antd";
 import Image from "next/image";
@@ -10,10 +10,7 @@ import Image from "next/image";
 const PostPage = () => {
   const [post, setpost] = useState(null);
   const { Meta } = Card;
-  const router = useRouter();
-  // const { id } = router.query;
-  // console.log(id);
-  const id = "";
+  const id = useParams();
   const tempImg =
     "https://plus.unsplash.com/premium_photo-1677094310956-7f88ae5f5c6b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D";
   const getPostById = async () => {
