@@ -54,19 +54,23 @@ const UserPostProfile = () => {
       );
     }
   };
-
+  // Handle user login and fetching posts
   useEffect(() => {
     if (userLogin) {
       setPopulatedUser(userLogin);
+      getUserPosts();
     }
-    getUserPosts();
+  }, [userLogin, getUserPosts, setPopulatedUser]);
+
+  // Handle populating the form when populatedUser is set
+  useEffect(() => {
     if (populatedUser) {
       form.setFieldsValue({
         username: populatedUser.username,
         number: populatedUser.number,
       });
     }
-  }, [userLogin, populatedUser, setPopulatedUser, form]);
+  }, [populatedUser, form]);
 
   return (
     <div>
