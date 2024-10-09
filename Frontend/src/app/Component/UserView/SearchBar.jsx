@@ -35,9 +35,9 @@ const SearchBar = () => {
         />
       </div>
       {post && post.length > 0
-        ? post.map((postData, index) => {
+        ? post.map((postData) => {
             return (
-              <div key={postData._id || index}>
+              <div key={postData._id}>
                 <PostCard
                   title={postData?.title}
                   description={postData?.description}

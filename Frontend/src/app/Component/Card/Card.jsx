@@ -25,6 +25,7 @@ const PostCard = ({ title, description, img, isUser, id }) => {
   };
   return (
     <Card
+      key={id}
       hoverable
       style={{
         width: 240,
