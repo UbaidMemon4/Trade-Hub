@@ -8,9 +8,8 @@ import { Login } from "./Redux/tradeSlice";
 function AppContent({ children }) {
   const dispatch = useDispatch();
 
+  const user = Cookies.get("JWT");
   useEffect(() => {
-    const user = Cookies.get("JWT");
-
     if (user) {
       dispatch(Login());
     }
