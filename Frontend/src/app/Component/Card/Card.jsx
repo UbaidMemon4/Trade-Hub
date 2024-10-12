@@ -25,7 +25,6 @@ const PostCard = ({ title, description, img, isUser, id }) => {
   };
   return (
     <Card
-      key={id}
       hoverable
       style={{
         width: 240,
@@ -33,9 +32,9 @@ const PostCard = ({ title, description, img, isUser, id }) => {
       actions={
         !isUser
           ? [
-              <div className="editDeleteButton">
+              <div key="delete" className="editDeleteButton">
                 <DeleteOutlined onClick={handleDelete} />
-                <EditOutlined onClick={() => handleEdit(post.id)} />
+                <EditOutlined key="edit" onClick={() => handleEdit(post.id)} />
               </div>,
             ]
           : null

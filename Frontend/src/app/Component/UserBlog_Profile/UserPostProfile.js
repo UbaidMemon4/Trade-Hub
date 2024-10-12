@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Cookies from "js-cookie";
@@ -6,6 +6,7 @@ import { Button, Avatar, Card, Form, Input } from "antd";
 import "./index.css";
 import { useSelector } from "react-redux";
 import PostCard from "../Card/Card";
+
 const UserPostProfile = () => {
   const token = Cookies.get("JWT");
   const [form] = Form.useForm();
@@ -40,7 +41,7 @@ const UserPostProfile = () => {
     }
   };
 
-  const getUserPosts = async () => {
+  const getUserPosts = useCallback(async () => {
     try {
       const { data } = await axios.get(
         `http://localhost:3001/post/user-post/${populatedUser._id}`
@@ -53,7 +54,7 @@ const UserPostProfile = () => {
         "Post loading failed due to slow network or user has no posts."
       );
     }
-  };
+  }, [populatedUser._id]);
   // Handle user login and fetching posts
   useEffect(() => {
     if (userLogin) {
