@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Cookies from "js-cookie";
@@ -41,7 +41,7 @@ const UserPostProfile = () => {
     }
   };
 
-  const getUserPosts = useCallback(async () => {
+  const getUserPosts = async () => {
     try {
       const { data } = await axios.get(
         `http://localhost:3001/post/user-post/${populatedUser._id}`
@@ -54,7 +54,7 @@ const UserPostProfile = () => {
         "Post loading failed due to slow network or user has no posts."
       );
     }
-  }, [populatedUser._id]);
+  }y;
   // Handle user login and fetching posts
   useEffect(() => {
     if (userLogin) {
