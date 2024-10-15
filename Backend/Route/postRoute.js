@@ -9,13 +9,17 @@ const {
   PostBySearchController,
   idPostController,
 } = require("../Controller/postController");
+const multer = require("multer");
+
+const upload = multer({
+  limits: { fileSize: 10 * 1024 * 1024 }, // 10 MB file size limit
+});
 
 // router object
 const router = express.Router();
 
 //Create Post || Post
-router.post("/create-post", createPostController);
-
+router.post("/create-post", upload.single("image"), createPostController);
 //Get-All-Post || get
 router.get("/get-all-post", getAllPostController);
 

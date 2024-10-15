@@ -76,6 +76,8 @@
 // };
 
 // export default PostPage;
+
+"use client";
 import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -83,7 +85,7 @@ import Cookies from "js-cookie";
 import { Button, Avatar, Card, Form, Input } from "antd";
 import "./index.css";
 import { useSelector } from "react-redux";
-import PostCard from "../Card/Card";
+import PostCard from "@/app/Component/Card/Card";
 
 const UserPostProfile = () => {
   const token = Cookies.get("JWT");

@@ -7,7 +7,11 @@ const { uploadImage } = require("../config/cloudinary");
 exports.createPostController = async (req, res) => {
   try {
     const { title, description, category, location, token } = req.body;
+    console.log("req.body =>:", req.body);
+
     const img = req.files;
+    console.log("req.files =>:", req.files);
+
     // Check if required fields are provided
     if (!title || !description || !category || !location || !img || !token) {
       return res.status(400).send({
@@ -18,6 +22,7 @@ exports.createPostController = async (req, res) => {
 
     // Find the user by token
     const user = await AuthModal.findOne({ token });
+    console.log("user =>:", user);
     if (!user) {
       return res.status(404).send({
         success: false,
@@ -26,26 +31,9 @@ exports.createPostController = async (req, res) => {
     }
 
     // Upload image to Cloudinary
-    let imageUrl;
-    if (img && img.file) {
-      try {
-        imageDta = await uploadImage(img.file);
-
-        console.log("Image uploaded successfully:", imageUrl);
-      } catch (error) {
-        return res.status(500).send({
-          success: false,
-          message: "Error while uploading image",
-          error: error.message,
-        });
-      }
-    } else {
-      return res.status(400).send({
-        success: false,
-        message: "Please provide an image",
-      });
-    }
-
+    const imageData = await uploadImage(img);
+    console.log("imageData =>:", imageData);
+    const imageUrl = imageData.url;
     // Create a new post
     const newPost = new PostModal({
       title,
@@ -55,6 +43,7 @@ exports.createPostController = async (req, res) => {
       modal,
       location,
     });
+    console.log("newPost =>:", newPost);
 
     // Save the new post to the database
     await newPost.save();

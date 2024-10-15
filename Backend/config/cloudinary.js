@@ -5,16 +5,19 @@ cloudinary.config({
   api_key: process.env.API_KEY,
   api_secret: process.env.API_SECRET,
 });
-exports.uploadImage = async (filePath) => {
-  try {
-    const result = await cloudinary.uploader.upload(filePath, {
-      folder: "Trade_Hub",
-    });
-    console.log("Image uploaded successfully:", result.secure_url);
+exports.uploadImage = async (file) => {
+  const fileBuffer = file.buffer;
 
-    return result.secure_url;
-  } catch (error) {
-    console.error("Error uploading image to Cloudinary:", error);
-    throw error;
-  }
+  //upload the image to cloudnary
+  return new Promise((res, rej) => {
+    cloudinary.uploader
+      .upload_stream({ resource_type: "auto" }, (error, result) => {
+        if (error) {
+          rej(error);
+        } else {
+          res(result);
+        }
+      })
+      .end(fileBuffer);
+  });
 };

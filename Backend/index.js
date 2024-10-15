@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const Connectdb = require("./config/db");
+const bodyParser = require("body-parser");
 
 //router import
 const authRoute = require("./Route/authRoute");
@@ -19,6 +20,8 @@ const app = express();
 //middle wares
 app.use(cors());
 app.use(express.json());
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
 //routes
 app.use("/auth", authRoute);
