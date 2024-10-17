@@ -34,14 +34,14 @@ const PostCard = ({ title, description, img, isUser, id }) => {
       actions={
         !isUser
           ? [
-              // <div key="delete" className="editDeleteButton">
-              //   <DeleteOutlined onClick={handleDelete} />
-              //   <EditOutlined key="edit" onClick={() => handleEdit(post.id)} />
-              // </div>,
-              <div key={`edit-delete-${id}`} className="editDeleteButton">
-                <DeleteOutlined onClick={handleDelete} />
-                <EditOutlined key="edit" onClick={() => handleEdit(id)} />
+              <div className="editDeleteButton">
+                <DeleteOutlined key={Math.random} onClick={handleDelete} />
+                <EditOutlined key="edit" onClick={() => handleEdit(post.id)} />
               </div>,
+              // <div key={`edit-delete-${id}`} className="editDeleteButton">
+              //   <DeleteOutlined onClick={handleDelete} />
+              //   <EditOutlined key="edit" onClick={() => handleEdit(id)} />
+              // </div>,
             ]
           : null
       }
