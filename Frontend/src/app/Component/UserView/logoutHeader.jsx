@@ -25,23 +25,7 @@ const LogoutHeader = () => {
   const { Option } = Select;
   const [visible, setVisible] = useState(false);
   const token = Cookies.get("JWT");
-  const getBlogDetailForEdit = async () => {
-    try {
-      const { data } = await axios.get(
-        `http://localhost:3001/post/get-post/${postEditId}`
-      );
-      if (data?.success) {
-        setVisible(true);
-        setInput({
-          title: data?.post?.title,
-          img: data?.post?.img,
-          id: data?.post?._id,
-        });
-      }
-    } catch (error) {
-      toast.error(error.response.data.message);
-    }
-  };
+
   const onFinish = async (values) => {
     try {
       console.log(values);
@@ -108,9 +92,27 @@ const LogoutHeader = () => {
   };
   useEffect(() => {
     if (postEditId) {
-      getBlogDetailForEdit(postEditId);
+      const getBlogDetailForEdit = async () => {
+        try {
+          const { data } = await axios.get(
+            `http://localhost:3001/post/get-post/${postEditId}`
+          );
+          if (data?.success) {
+            setVisible(true);
+            setInput({
+              title: data?.post?.title,
+              img: data?.post?.img,
+              id: data?.post?._id,
+            });
+          }
+        } catch (error) {
+          toast.error(error.response.data.message);
+        }
+      };
+
+      getBlogDetailForEdit(); // Call the function here
     }
-  }, [getBlogDetailForEdit, postEditId]);
+  }, [postEditId]); // Only postEditId should be in the dependency array
 
   let formFunction = input.id ? onFinishEdit : onFinish;
 

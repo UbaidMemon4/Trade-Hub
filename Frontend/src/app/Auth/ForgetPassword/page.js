@@ -4,6 +4,7 @@ import Loginheader from "@/app/Component/LoginHeader/loginheader";
 import React, { useEffect } from "react";
 import "../../globals.css";
 import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
 
 const Forget = () => {
   const router = useRouter();

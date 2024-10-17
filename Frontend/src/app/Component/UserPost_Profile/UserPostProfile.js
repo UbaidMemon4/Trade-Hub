@@ -54,7 +54,7 @@ const UserPostProfile = () => {
         "Post loading failed due to slow network or user has no posts."
       );
     }
-  }y;
+  };
   // Handle user login and fetching posts
   useEffect(() => {
     if (userLogin) {

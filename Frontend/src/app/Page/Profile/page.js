@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import LogoutHeader from "../../Component/UserView/logoutHeader";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
-import UserPostProfile from "@/app/Component/UserBlog_Profile/UserPostProfile";
+import UserPostProfile from "../../Component/UserPost_Profile/UserPostProfile";
 
 const Profile = () => {
   const router = useRouter();
